@@ -81,6 +81,7 @@ cdef extern from 'helper.h' nogil:
         unsigned int cpu_time # ask linus how this counts the CPU time because it SIGKILLs way before the real time limit
         unsigned long personality # so we can do things like disable ASLR without toasting security on entire system
         int nproc
+        int fsize
         char *file
         char *dir
         char **argv
@@ -400,6 +401,7 @@ cdef class Process:
         config.memory = self._child_memory
         config.cpu_time = self._cpu_time
         config.nproc = self._nproc
+        config.fsize = self._fsize
         config.personality = self._child_personality
         config.file = file
         config.dir = chdir
